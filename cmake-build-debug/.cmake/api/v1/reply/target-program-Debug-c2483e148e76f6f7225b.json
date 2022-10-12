@@ -149,12 +149,12 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-L\"C:\\Users\\pacsi\\Documents\\Projects\\School\\5. felev\\Grafika\\Hf1\\src\\freeglut\\lib\\x64\"",
+				"fragment" : "-LC:\\Users\\pacsi\\DOCUME~1\\Projects\\School\\55E87~1.FEL\\Grafika\\Hf1\\src\\freeglut\\lib\\x64",
 				"role" : "libraryPath"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-L\"C:\\Users\\pacsi\\Documents\\Projects\\School\\5. felev\\Grafika\\Hf1\\src\\glew\\lib\\Release\\x64\"",
+				"fragment" : "-LC:\\Users\\pacsi\\DOCUME~1\\Projects\\School\\55E87~1.FEL\\Grafika\\Hf1\\src\\glew\\lib\\Release\\x64",
 				"role" : "libraryPath"
 			},
 			{
