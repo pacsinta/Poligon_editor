@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "NEVEZZ_AT",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "glew::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-glew-Debug-c6cc87c39c0fa35e795f.json",
+					"name" : "glew",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "glut::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-glut-Debug-982e41ec9a7541ca250a.json",
+					"name" : "glut",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "program::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-program-Debug-c58c2d873215bba31e18.json",
+					"name" : "program",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug",
+		"source" : "C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

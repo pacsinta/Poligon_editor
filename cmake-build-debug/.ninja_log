@@ -1,0 +1,42 @@
+# ninja log v5
+1	45	6872843357183601	glut-prefix/src/glut-stamp/glut-mkdir	db58935933ec3f5c
+1	45	6872843357183601	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-mkdir	db58935933ec3f5c
+4	47	6872843357193574	glew-prefix/src/glew-stamp/glew-mkdir	90dbf59d593d4c9e
+4	47	6872843357193574	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-mkdir	90dbf59d593d4c9e
+47	1979	6872843376514624	glew-prefix/src/glew-stamp/glew-download	e38dce2cdaf30b4b
+47	1979	6872843376514624	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-download	e38dce2cdaf30b4b
+1980	2009	6872843376817884	glew-prefix/src/glew-stamp/glew-update	21fcecf8bc232c95
+1980	2009	6872843376817884	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-update	21fcecf8bc232c95
+2009	2036	6872843377093180	glew-prefix/src/glew-stamp/glew-patch	4907cd7f3fcccd53
+2009	2036	6872843377093180	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-patch	4907cd7f3fcccd53
+2036	2065	6872843377386120	glew-prefix/src/glew-stamp/glew-configure	dc3e679c377ae01a
+2036	2065	6872843377386120	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-configure	dc3e679c377ae01a
+2065	2095	6872843377683421	glew-prefix/src/glew-stamp/glew-build	f7c8c3ccb3019a23
+2065	2095	6872843377683421	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-build	f7c8c3ccb3019a23
+2095	2124	6872843377970862	glew-prefix/src/glew-stamp/glew-install	e5ca7e0be0ef8b85
+2095	2124	6872843377970862	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-install	e5ca7e0be0ef8b85
+2124	2164	6872843378365945	CMakeFiles/glew-complete	d1a6ae00b76571c5
+2124	2164	6872843378365945	glew-prefix/src/glew-stamp/glew-done	d1a6ae00b76571c5
+2124	2164	6872843378365945	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/glew-complete	d1a6ae00b76571c5
+2124	2164	6872843378365945	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glew-prefix/src/glew-stamp/glew-done	d1a6ae00b76571c5
+45	2481	6872843381543120	glut-prefix/src/glut-stamp/glut-download	2ff412e97fb9ff74
+45	2481	6872843381543120	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-download	2ff412e97fb9ff74
+2481	2509	6872843381822313	glut-prefix/src/glut-stamp/glut-update	7b3237c39c821404
+2481	2509	6872843381822313	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-update	7b3237c39c821404
+2509	2536	6872843382092435	glut-prefix/src/glut-stamp/glut-patch	2d2473d00c7547aa
+2509	2536	6872843382092435	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-patch	2d2473d00c7547aa
+2536	2563	6872843382367201	glut-prefix/src/glut-stamp/glut-configure	9884c474ec75e590
+2536	2563	6872843382367201	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-configure	9884c474ec75e590
+2563	2592	6872843382650717	glut-prefix/src/glut-stamp/glut-build	47490ae8d4ba6936
+2563	2592	6872843382650717	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-build	47490ae8d4ba6936
+2592	2620	6872843382933487	glut-prefix/src/glut-stamp/glut-install	1826e27003b0c109
+2592	2620	6872843382933487	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-install	1826e27003b0c109
+2620	2659	6872843383311091	CMakeFiles/glut-complete	ea0ac167eed894e
+2620	2659	6872843383311091	glut-prefix/src/glut-stamp/glut-done	ea0ac167eed894e
+2620	2659	6872843383311091	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/glut-complete	ea0ac167eed894e
+2620	2659	6872843383311091	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/glut-prefix/src/glut-stamp/glut-done	ea0ac167eed894e
+2659	2667	0	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/src/Skeleton.cpp	9ceccd2007ddaec7
+2662	2669	0	C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/src/framework.cpp	9ceccd2007ddaec7
+2669	3837	6872843395094974	CMakeFiles/program.dir/src/framework.cpp.obj	9c8df5765526ad49
+2667	3862	6872843395338265	CMakeFiles/program.dir/src/Skeleton.cpp.obj	b5e2f309c4f48958
+3862	4050	6872843396381806	program.exe	d6f8968a03686a1e
