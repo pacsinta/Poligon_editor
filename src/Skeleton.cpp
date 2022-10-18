@@ -66,27 +66,13 @@ class Poly {
     unsigned int vao;
     unsigned int vbo;
 public:
-    vec3 color;
+    vec3 color = vec3(0, 1, 0);
 
     void addPoint(vec2 new_point) {
         Points.push_back(new_point);
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, Points.size() * sizeof(vec2), Points.data(), GL_STATIC_DRAW);
-    }
-
-    Poly() {
-        this->color = vec3(0, 1, 1);
-
-        /*addPoint(vec2(-0.8f, -0.8f));
-        addPoint(vec2(-0.8f, 0.8f));
-        addPoint(vec2(0.8, 0.8));
-        addPoint(vec2(0.8, -0.8));*/
-    }
-
-    Poly(vec3 color) {
-        this->color = color;
-        Poly();
     }
 
     void load() {
