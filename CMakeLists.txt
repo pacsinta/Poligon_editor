@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(NEVEZZ_AT
+project(PolygonEditor
         VERSION 0.0.0
         LANGUAGES CXX
         DESCRIPTION "IRJ AT")
