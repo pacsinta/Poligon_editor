@@ -1,5 +1,0 @@
-C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/program.dir
-C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/glut.dir
-C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/glew.dir
-C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/pacsi/Documents/Projects/School/5. felev/Grafika/Hf1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
