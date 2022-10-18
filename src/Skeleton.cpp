@@ -66,7 +66,7 @@ class Poly {
     unsigned int vao;
     unsigned int vbo;
 public:
-    vec3 color = vec3(0, 1, 0);
+    vec3 color = vec3(0, 1, 1);
 
     void addPoint(vec2 new_point) {
         Points.push_back(new_point);
