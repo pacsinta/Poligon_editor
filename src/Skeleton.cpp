@@ -75,6 +75,10 @@ public:
         glBufferData(GL_ARRAY_BUFFER, Points.size() * sizeof(vec2), Points.data(), GL_STATIC_DRAW);
     }
 
+    bool  isInLine(vec2 p1, vec2 p2, vec2 newPoint){
+        return false;
+    }
+
     void load() {
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
