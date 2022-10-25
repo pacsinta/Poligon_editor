@@ -1,5 +1,5 @@
 //=============================================================================================
-// Mintaprogram: Zï¿½ld hï¿½romszï¿½g. Ervenyes 2019. osztol.
+// Mintaprogram: Zold haromszog. Ervenyes 2019. osztol.
 //
 // A beadott program csak ebben a fajlban lehet, a fajl 1 byte-os ASCII karaktereket tartalmazhat, BOM kihuzando.
 // Tilos:
@@ -18,7 +18,7 @@
 //
 // NYILATKOZAT
 // ---------------------------------------------------------------------------------------------
-// Nev    : CsikÃ³s Patrik
+// Nev    : Csikós Patrik
 // Neptun : E4MZUV
 // ---------------------------------------------------------------------------------------------
 // ezennel kijelentem, hogy a feladatot magam keszitettem, es ha barmilyen segitseget igenybe vettem vagy
@@ -73,6 +73,10 @@ public:
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, Points.size() * sizeof(vec2), Points.data(), GL_STATIC_DRAW);
+    }
+
+    vec3 Hermite(vec3 p0, vec3 v0, float t0, vec3 p1, vec3 v1, float t1){
+        return vec3(0);
     }
 
     bool  isInLine(vec2 p1, vec2 p2, vec2 newPoint){
