@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11)
 project(PolygonEditor
         VERSION 0.0.0
         LANGUAGES CXX
-        DESCRIPTION "IRJ AT")
+        DESCRIPTION "PolygonEditor")
 
 set(SRC_FILES ./src/framework.cpp ./src/Skeleton.cpp) # BŐVITSD KI
 set(HEADER_FILES ./src/framework.h) # BŐVÍTSD KI
