@@ -59,12 +59,16 @@ const char *const fragmentSource = R"(
 )";
 
 GPUProgram gpuProgram; // vertex and fragment shaders
+const int nTesselatedVertices = 100;
 
 
 class Poly {
     std::vector<vec2> Points;
     unsigned int vao;
     unsigned int vbo;
+
+    int tension = -1;
+    std::vector<float> ts;
 public:
     vec3 color = vec3(0, 1, 1);
 
@@ -73,14 +77,12 @@ public:
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferData(GL_ARRAY_BUFFER, Points.size() * sizeof(vec2), Points.data(), GL_STATIC_DRAW);
+
+        glutPostRedisplay();
     }
 
-    vec3 Hermite(vec3 p0, vec3 v0, float t0, vec3 p1, vec3 v1, float t1){
-        return vec3(0);
-    }
+    void catmullRom(){
 
-    bool  isInLine(vec2 p1, vec2 p2, vec2 newPoint){
-        return false;
     }
 
     void load() {
