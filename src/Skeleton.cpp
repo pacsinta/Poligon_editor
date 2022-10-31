@@ -43,12 +43,12 @@ const char *vertexSource = R"(
 	#version 330
     precision highp float;
 
-	uniform mat4 MVP;			// Model-View-Projection matrix in row-major format
+	uniform mat4 MVP;
 
-	layout(location = 0) in vec2 vertexPosition;	// Attrib Array 0
+	layout(location = 0) in vec2 vertexPosition;
 
 	void main() {
-		gl_Position = vec4(vertexPosition.x, vertexPosition.y, 0, 1) * MVP; 		// transform to clipping space
+		gl_Position = vec4(vertexPosition.x, vertexPosition.y, 0, 1) * MVP;
 	}
 )";
 
@@ -58,41 +58,40 @@ const char *fragmentSource = R"(
     precision highp float;
 
 	uniform vec3 color;
-	out vec4 fragmentColor;		// output that goes to the raster memory as told by glBindFragDataLocation
+	out vec4 fragmentColor;
 
 	void main() {
-		fragmentColor = vec4(color, 1); // extend RGB to RGBA
+		fragmentColor = vec4(color, 1);
 	}
 )";
 
 // A tanar ur gorbe szerkesztoje altal:
-// 2D camera
 struct Camera {
-    float wCx = 0, wCy = 0;    // center in world coordinates
-    float wWx = 20, wWy = 20;    // width and height in world coordinates
+    float wCx = 0, wCy = 0;
+    float wWx = 20, wWy = 20;
 public:
-    mat4 V() { // view matrix: translates the center to the origin
+    mat4 V() {
         return mat4(1, 0, 0, 0,
                     0, 1, 0, 0,
                     0, 0, 1, 0,
                     -wCx, -wCy, 0, 1);
     }
 
-    mat4 P() { // projection matrix: scales it to be a square of edge length 2
+    mat4 P() {
         return mat4(2 / wWx, 0, 0, 0,
                     0, 2 / wWy, 0, 0,
                     0, 0, 1, 0,
                     0, 0, 0, 1);
     }
 
-    mat4 Vinv() { // inverse view matrix
+    mat4 Vinv() {
         return mat4(1, 0, 0, 0,
                     0, 1, 0, 0,
                     0, 0, 1, 0,
                     wCx, wCy, 0, 1);
     }
 
-    mat4 Pinv() { // inverse projection matrix
+    mat4 Pinv() {
         return mat4(wWx / 2, 0, 0, 0,
                     0, wWy / 2, 0, 0,
                     0, 0, 1, 0,
@@ -101,8 +100,8 @@ public:
 };
 
 
-Camera camera;    // 2D camera
-GPUProgram gpuProgram; // vertex and fragment shaders
+Camera camera;
+GPUProgram gpuProgram;
 
 // A tanar ur gorbe szerkesztoje altal
 class Curve {
@@ -111,45 +110,40 @@ class Curve {
     unsigned int vaoConvexHull, vboConvexHull;
 
 protected:
-    std::vector<vec4> wCtrlPoints;        // coordinates of control points
-    std::vector<float> ts;  // knots
+    std::vector<vec4> wCtrlPoints;
+    std::vector<float> ts;
 public:
     Curve() {
         // Curve
         glGenVertexArrays(1, &vaoCurve);
         glBindVertexArray(vaoCurve);
 
-        glGenBuffers(1, &vboCurve); // Generate 1 vertex buffer object
+        glGenBuffers(1, &vboCurve);
         glBindBuffer(GL_ARRAY_BUFFER, vboCurve);
-        // Enable the vertex attribute arrays
-        glEnableVertexAttribArray(0);  // attribute array 0
-        // Map attribute array 0 to the vertex data of the interleaved vbo
+        glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float),
-                              NULL); // attribute array, components/attribute, component type, normalize?, stride, offset
+                              NULL);
 
-        // Control Points
         glGenVertexArrays(1, &vaoCtrlPoints);
         glBindVertexArray(vaoCtrlPoints);
 
-        glGenBuffers(1, &vboCtrlPoints); // Generate 1 vertex buffer object
+        glGenBuffers(1, &vboCtrlPoints);
         glBindBuffer(GL_ARRAY_BUFFER, vboCtrlPoints);
-        // Enable the vertex attribute arrays
-        glEnableVertexAttribArray(0);  // attribute array 0
-        // Map attribute array 0 to the vertex data of the interleaved vbo
+        glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float),
-                              NULL); // attribute array, components/attribute, component type, normalize?, stride, offset
+                              NULL);
 
-        // Convex Hull
+
         glGenVertexArrays(1, &vaoConvexHull);
         glBindVertexArray(vaoConvexHull);
 
-        glGenBuffers(1, &vboConvexHull); // Generate 1 vertex buffer object
+        glGenBuffers(1, &vboConvexHull);
         glBindBuffer(GL_ARRAY_BUFFER, vboConvexHull);
-        // Enable the vertex attribute arrays
-        glEnableVertexAttribArray(0);  // attribute array 0
-        // Map attribute array 0 to the vertex data of the interleaved vbo
+
+        glEnableVertexAttribArray(0);
+
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float),
-                              NULL); // attribute array, components/attribute, component type, normalize?, stride, offset
+                              NULL);
     }
 
     virtual vec4 r(float t) { return wCtrlPoints[0]; }
@@ -184,7 +178,7 @@ public:
 
         int colorLocation = glGetUniformLocation(gpuProgram.getId(), "color");
 
-        if (wCtrlPoints.size() > 0) {    // draw control points
+        if (wCtrlPoints.size() > 0) {
             glBindVertexArray(vaoCtrlPoints);
             glBindBuffer(GL_ARRAY_BUFFER, vboCtrlPoints);
             glBufferData(GL_ARRAY_BUFFER, wCtrlPoints.size() * 4 * sizeof(float), &wCtrlPoints[0], GL_DYNAMIC_DRAW);
@@ -193,16 +187,16 @@ public:
             glDrawArrays(GL_POINTS, 0, wCtrlPoints.size());
         }
 
-        if (wCtrlPoints.size() >= 2) {    // draw polygon
+        if (wCtrlPoints.size() >= 2) {
             std::vector<float> vertexData;
-            for (int i = 0; i < nTesselatedVertices; i++) {    // Tessellate
+            for (int i = 0; i < nTesselatedVertices; i++) {
                 float tNormalized = (float) i / (nTesselatedVertices - 1);
                 float t = tStart() + (tEnd() - tStart()) * tNormalized;
                 vec4 wVertex = r(t);
                 vertexData.push_back(wVertex.x);
                 vertexData.push_back(wVertex.y);
             }
-            // copy data to the GPU
+
             glBindVertexArray(vaoCurve);
             glBindBuffer(GL_ARRAY_BUFFER, vboCurve);
             glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(float), &vertexData[0], GL_DYNAMIC_DRAW);
@@ -213,7 +207,7 @@ public:
 };
 
 // A tanar ur gorbe szerkesztoje altal:
-class CatmullRomSpline : public Curve {
+class Polynom : public Curve {
 
     //Sajat
     vec4 Hermite(vec4 p0, vec4 v0, float t0, vec4 p1, vec4 v1, float t1, float t) {
@@ -226,54 +220,54 @@ class CatmullRomSpline : public Curve {
     }
 
 public:
+    void Add2(float cX, float cY){
+        ts.push_back((float) wCtrlPoints.size());
+        Curve::AddControlPoint(cX, cY);
+    }
+
     //Sajat
     void AddControlPoint(float cX, float cY) {
         if (wCtrlPoints.size() < 3) {
             ts.push_back((float) wCtrlPoints.size());
             Curve::AddControlPoint(cX, cY);
         } else {
-            if (wCtrlPoints.size() < 3) {
-                vec4 wVertex = vec4(cX, cY, 0, 1) * camera.Pinv() * camera.Vinv();
-                wCtrlPoints.push_back(wVertex);
-            } else {
-                vec4 click = vec4(cX, cY, 0, 1) * camera.Pinv() * camera.Vinv();
-                float MinDistance;
-                vec4 vertex;
-                float location_t;
+            vec4 click = vec4(cX, cY, 0, 1) * camera.Pinv() * camera.Vinv();
+            float MinDistance;
+            vec4 vertex;
+            float location_t;
 
-                ts.push_back((float) wCtrlPoints.size());
-                wCtrlPoints.push_back(wCtrlPoints[0]);
-                for (int i = 0; i < nTesselatedVertices; i++) {    // Tessellate
-                    float tNormalized = (float) i / (nTesselatedVertices - 1);
+            ts.push_back((float) wCtrlPoints.size());
+            wCtrlPoints.push_back(wCtrlPoints[0]);
+            for (int i = 0; i < nTesselatedVertices; i++) {    // Tessellate
+                float tNormalized = (float) i / (nTesselatedVertices - 1);
 
-                    float t = tStart() + (tEnd() - tStart()) * tNormalized;
-                    vec4 wVertex = r(t);
+                float t = tStart() + (tEnd() - tStart()) * tNormalized;
+                vec4 wVertex = r(t);
 
-                    float distance = dot(vec2(wVertex.x, wVertex.y) - vec2(click.x, click.y),
-                                         vec2(wVertex.x, wVertex.y) - vec2(click.x, click.y));
-                    if (i == 0 || distance < MinDistance) {
-                        MinDistance = distance;
-                        vertex = wVertex;
-                        location_t = t;
-                    }
+                float distance = dot(vec2(wVertex.x, wVertex.y) - vec2(click.x, click.y),
+                                     vec2(wVertex.x, wVertex.y) - vec2(click.x, click.y));
+                if (i == 0 || distance < MinDistance) {
+                    MinDistance = distance;
+                    vertex = wVertex;
+                    location_t = t;
                 }
+            }
 
-                ts.pop_back();
-                wCtrlPoints.pop_back();
+            ts.pop_back();
+            wCtrlPoints.pop_back();
 
-                bool found = false;
-                for (int i = 0; i < ts.size(); i++) {
-                    if (ts[i] >= location_t) {
-                        ts.push_back((float) wCtrlPoints.size());
-                        wCtrlPoints = insertControlPoint(i, vertex, wCtrlPoints);
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
+            bool found = false;
+            for (int i = 0; i < ts.size(); i++) {
+                if (ts[i] >= location_t) {
                     ts.push_back((float) wCtrlPoints.size());
-                    wCtrlPoints.push_back(vertex);
+                    wCtrlPoints = insertControlPoint(i, vertex, wCtrlPoints);
+                    found = true;
+                    break;
                 }
+            }
+            if (!found) {
+                ts.push_back((float) wCtrlPoints.size());
+                wCtrlPoints.push_back(vertex);
             }
         }
     }
@@ -441,31 +435,29 @@ public:
     }
 };
 
-// The virtual world: collection of two objects
-CatmullRomSpline *polygon;
+
+Polynom *polygon;
 
 
-// Initialization, create an OpenGL context
 void onInitialization() {
     glViewport(0, 0, windowWidth, windowHeight);
     glLineWidth(2.0f);
 
-    polygon = new CatmullRomSpline();
+    polygon = new Polynom();
 
-    // create program for the GPU
+
     gpuProgram.create(vertexSource, fragmentSource, "outColor");
 }
 
-// Window has become invalid: Redraw
+
 void onDisplay() {
-    glClearColor(0, 0, 0, 0);                            // background color
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the screen
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     polygon->Draw();
-    glutSwapBuffers();                                    // exchange the two buffers
+    glutSwapBuffers();
 }
 
-// Key of ASCII code pressed
 void onKeyboard(unsigned char key, int pX, int pY) {
     if (key == 's') {
         polygon->Smoothing();
@@ -477,41 +469,49 @@ void onKeyboard(unsigned char key, int pX, int pY) {
     }
 }
 
-// Key of ASCII code released
 void onKeyboardUp(unsigned char key, int pX, int pY) {
 
 }
 
 int pickedControlPoint = -1;
 
-// Mouse click event
 void onMouse(int button, int state, int pX, int pY) {
     if (button == GLUT_RIGHT_BUTTON &&
-        state == GLUT_DOWN) {  // GLUT_LEFT_BUTTON / GLUT_RIGHT_BUTTON and GLUT_DOWN / GLUT_UP
-        float cX = 2.0f * pX / windowWidth - 1;    // flip y axis
+        state == GLUT_DOWN) {
+        float cX = 2.0f * pX / windowWidth - 1;
         float cY = 1.0f - 2.0f * pY / windowHeight;
 
         pickedControlPoint = polygon->PickControlPoint(cX, cY);
+
         if(pickedControlPoint == -1) {
             polygon->AddControlPoint(cX, cY);
             pickedControlPoint = polygon->PickControlPoint(cX, cY);
         }
-        glutPostRedisplay();     // redraw
+        glutPostRedisplay();
     }
     if (button == GLUT_RIGHT_BUTTON &&
-        state == GLUT_UP) {  // GLUT_LEFT_BUTTON / GLUT_RIGHT_BUTTON and GLUT_DOWN / GLUT_UP
+        state == GLUT_UP) {
         pickedControlPoint = -1;
+    }
+
+    if(button == GLUT_LEFT_BUTTON &&
+       state == GLUT_DOWN) {
+        float cX = 2.0f * pX / windowWidth - 1;
+        float cY = 1.0f - 2.0f * pY / windowHeight;
+
+        polygon->Add2(cX, cY);
+        pickedControlPoint = polygon->PickControlPoint(cX, cY);
+
+        glutPostRedisplay();
     }
 }
 
-// Move mouse with key pressed
 void onMouseMotion(int pX, int pY) {
-    float cX = 2.0f * pX / windowWidth - 1;    // flip y axis
+    float cX = 2.0f * pX / windowWidth - 1;
     float cY = 1.0f - 2.0f * pY / windowHeight;
     if (pickedControlPoint >= 0) polygon->MoveControlPoint(pickedControlPoint, cX, cY);
 }
 
-// Idle event indicating that some time elapsed: do animation here
 void onIdle() {
     glutPostRedisplay();
 }
