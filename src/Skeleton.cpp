@@ -150,9 +150,9 @@ public:
     }
 
     void loadCurve(){
-        glGenVertexArrays(2, &vaoCurve);
+        glGenVertexArrays(1, &vaoCurve);
         glBindVertexArray(vaoCurve);
-        glGenBuffers(2, &vboCurve);
+        glGenBuffers(1, &vboCurve);
         glBindBuffer(GL_ARRAY_BUFFER, vboCurve);
         glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(float), &vertexData[0], GL_STATIC_DRAW);
         glEnableVertexAttribArray(0);
@@ -171,7 +171,7 @@ public:
         gpuProgram.setUniform(color, "color");
         glBindVertexArray(vaoPoints);
         glBindBuffer(GL_ARRAY_BUFFER, vboPoints);
-        glDrawArrays(GL_LINE_LOOP, 0, points.size());
+        glDrawArrays(GL_POINTS, 0, points.size());
     }
 };
 
@@ -182,6 +182,7 @@ void onInitialization() {
     glViewport(0, 0, windowWidth, windowHeight);
 
     glLineWidth(2);
+    glPointSize(5);
 
     gpuProgram.create(vertexSource, fragmentSource, "outColor");
     polygon = new Poly();
@@ -192,7 +193,7 @@ void onDisplay() {
     glClearColor(0, 0, 0, 0);     // background color
     glClear(GL_COLOR_BUFFER_BIT); // clear frame buffer
 
-    polygon.draw();
+    polygon->draw();
 
     glutSwapBuffers(); // exchange buffers for double buffering
 }
@@ -202,9 +203,9 @@ void onKeyboard(unsigned char key, int pX, int pY) {
     if (key == 'd') glutPostRedisplay();         // if d, invalidate display, i.e. redraw
 
     if(key == 's'){
-        polygon.calcCurve();
-        polygon.loadCurve();
-        polygon.drawCurve();
+        polygon->calcCurve();
+        polygon->loadCurve();
+        polygon->drawCurve();
 
         glutPostRedisplay();
     }
@@ -233,7 +234,7 @@ void onMouse(int button, int state, int pX,
         float cY = 1.0f - 2.0f * pY / windowHeight;
 
         printf("Mouse click at coordinates (%.5f, %.5f)\n", cX, cY);
-        polygon.addPoint(vec2(cX, cY));
+        polygon->addPoint(vec2(cX, cY));
 
         glutPostRedisplay();
     }
